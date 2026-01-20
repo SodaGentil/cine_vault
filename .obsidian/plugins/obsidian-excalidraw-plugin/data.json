@@ -68,7 +68,7 @@
   "parseTODO": false,
   "todo": "☐",
   "done": "🗹",
-  "hoverPreviewWithoutCTRL": false,
+  "hoverPreviewWithoutCTRL": true,
   "linkOpacity": 1,
   "openInAdjacentPane": true,
   "showSecondOrderLinks": true,
