@@ -179,7 +179,7 @@
   "sidepanelTabs": [],
   "customPens": [
     {
-      "type": "default",
+      "type": "thin-thick-thin",
       "freedrawOnly": false,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -190,7 +190,7 @@
         "highlighter": false,
         "constantPressure": false,
         "hasOutline": false,
-        "outlineWidth": 1,
+        "outlineWidth": 0,
         "options": {
           "thinning": 0.6,
           "smoothing": 0.5,
