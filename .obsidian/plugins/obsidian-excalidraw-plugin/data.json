@@ -41,7 +41,7 @@
   "dynamicStyling": "colorful",
   "isLeftHanded": false,
   "desktopUIMode": "tray",
-  "tabletUIMode": "tray",
+  "tabletUIMode": "compact",
   "iframeMatchExcalidrawTheme": true,
   "matchTheme": false,
   "matchThemeAlways": false,
