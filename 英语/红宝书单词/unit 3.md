@@ -1,0 +1,55 @@
+
+- [ ] technical
+- [ ] technician
+- [ ] technique
+- [ ] technology
+- [ ] 
+- [ ] temper
+- [ ] temperature
+- [ ] temporal
+- [ ] temporary
+- [ ] tempt
+- [ ] temptation
+- [ ] 
+- [ ] term
+- [ ] terminal
+- [ ] terminate
+- [ ] 
+- [ ] ultimate
+- [ ] underestimate
+- [ ] undergo
+- [ ] underlie
+- [ ] underlying
+- [ ] underline
+- [ ] undertake
+- [ ] uneasy
+- [ ] unemployment
+- [ ] unexpected
+- [ ] unfiy
+- [ ] union
+- [ ] unique
+- [ ] universal
+- [ ] universe
+- [ ] unlike
+- [ ] unlikely
+- [ ] unusual
+- [ ] 
+- [ ] vague
+- [ ] vain
+- [ ] valid
+- [ ] valuable
+- [ ] value
+- [ ] vanish
+- [ ] variable
+- [ ] variance
+- [ ] variation
+- [ ] variety
+- [ ] various
+- [ ] vary
+- [ ] vast
+- [ ] 
+- [ ] weird
+- [ ] welfare
+- [ ] 
+- [ ] whirl
+- [ ] whisper
