@@ -14,5 +14,13 @@
       ],
       "key": "Q"
     }
+  ],
+  "obsidian-excalidraw-plugin:convert-to-excalidraw": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "N"
+    }
   ]
 }
