@@ -1,0 +1,44 @@
+
+- [ ] media
+- [ ] medium
+- [ ] meditation
+- [ ] mediate
+- [ ] 
+- [ ] elaborate
+- [ ] elegant
+- [ ] element
+- [ ] elementary
+- [ ] eliminate
+- [ ] 
+- [ ] abolish
+- [ ] absence
+- [ ] absent
+- [ ] abroad
+- [ ] absolute
+- [ ] absorb
+- [ ] abstract
+- [ ] 
+- [ ] ban
+- [ ] bar
+- [ ] bare
+- [ ] barely
+- [ ] bargain
+- [ ] 
+- [ ] capacity
+- [ ] capable
+- [ ] capital
+- [ ] captive
+- [ ] capture
+- [ ] career
+- [ ] case
+- [ ] cast
+- [ ] casual
+- [ ] casually
+- [ ] catch
+- [ ] category
+- [ ] cater
+- [ ] cause
+- [ ] cautious
+- [ ] c
+
+
