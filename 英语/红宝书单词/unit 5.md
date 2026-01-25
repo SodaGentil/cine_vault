@@ -1,0 +1,82 @@
+
+- [ ] patch
+- [ ] patent
+- [ ] pattern
+- [ ] pay
+- [ ] payment
+- [ ] 
+- [ ] peculiar
+- [ ] peer
+- [ ] per
+- [ ] perceive
+- [ ] percentage
+- [ ] perfect
+- [ ] 
+- [ ] rail
+- [ ] railway
+- [ ] raise
+- [ ] rally
+- [ ] random
+- [ ] range
+- [ ] rank
+- [ ] 
+- [ ] master
+- [ ] masterpiece
+- [ ] mate
+- [ ] material
+- [ ] mathmatical
+- [ ] mature
+- [ ] maximum
+- [ ] 
+- [ ] mean
+- [ ] meaning
+- [ ] means
+- [ ] meantime
+- [ ] meanwhile
+- [ ] measure
+- [ ] 
+- [ ] opening
+- [ ] opera
+- [ ] operate
+- [ ] operation
+- [ ] operational
+- [ ] operator
+- [ ] opinion
+- [ ] opportunity
+- [ ] opponent
+- [ ] oppose
+- [ ] opposite
+- [ ] oppress
+- [ ] 
+- [ ] scope
+- [ ] score
+- [ ] scorn
+- [ ] 
+- [ ] secure
+- [ ] security
+- [ ] see
+- [ ] seek
+- [ ] seem
+- [ ] seemingly
+- [ ] 
+- [ ] thrift
+- [ ] thrill
+- [ ] thrive
+- [ ] through
+- [ ] throughout
+- [ ] 
+- [ ] tip
+- [ ] title
+- [ ] 
+- [ ] urban
+- [ ] urge
+- [ ] urgent
+- [ ] utilize
+- [ ] utter
+- [ ] 
+- [ ] wonder
+- [ ] worship
+- [ ] worth
+- [ ] worthwhile
+- [ ] worthy
+- [ ] 
