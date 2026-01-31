@@ -23,12 +23,20 @@
       "key": "N"
     }
   ],
-  "obsidian-excalidraw-plugin:open-link-props": [
+  "obsidian-excalidraw-plugin:insert-LaTeX-symbol": [
     {
       "modifiers": [
         "Alt"
       ],
       "key": "X"
+    }
+  ],
+  "obsidian-excalidraw-plugin:open-link-props": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "C"
     }
   ]
 }
