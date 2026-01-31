@@ -22,5 +22,13 @@
       ],
       "key": "N"
     }
+  ],
+  "obsidian-excalidraw-plugin:open-link-props": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "X"
+    }
   ]
 }
