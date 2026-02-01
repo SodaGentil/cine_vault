@@ -1,7 +1,7 @@
 {
   "userId": "d5ecc463-d1ed-4515-bd24-4d33c04b6d77",
   "isPlusUser": false,
-  "plusLicenseKey": "",
+  "plusLicenseKey": "sk-0ede6e59ff2f11f0ba940262342b8791",
   "openAIApiKey": "",
   "openAIOrgId": "",
   "huggingfaceApiKey": "",
@@ -12,11 +12,11 @@
   "azureOpenAIApiDeploymentName": "",
   "azureOpenAIApiVersion": "",
   "azureOpenAIApiEmbeddingDeploymentName": "",
-  "googleApiKey": "AIzaSyB_y7MoEGhrBaehNIapUIOi4JA2NrOrrb8",
+  "googleApiKey": "",
   "openRouterAiApiKey": "",
   "xaiApiKey": "",
   "mistralApiKey": "",
-  "deepseekApiKey": "",
+  "deepseekApiKey": "sk-0ede6e59ff2f11f0ba940262342b8791",
   "amazonBedrockApiKey": "",
   "amazonBedrockRegion": "",
   "siliconflowApiKey": "",
@@ -24,7 +24,7 @@
   "githubCopilotToken": "",
   "githubCopilotTokenExpiresAt": 0,
   "defaultChainType": "llm_chain",
-  "defaultModelKey": "google/gemini-2.5-flash|openrouterai",
+  "defaultModelKey": "deepseek-reasoner|deepseek",
   "embeddingModelKey": "text-embedding-3-small|openai",
   "temperature": 0.1,
   "maxTokens": 6000,
@@ -190,8 +190,8 @@
       "enabled": true,
       "isBuiltIn": true,
       "capabilities": [
-        "vision",
-        "reasoning"
+        "reasoning",
+        "vision"
       ]
     },
     {
@@ -261,6 +261,28 @@
       "capabilities": [
         "reasoning"
       ]
+    },
+    {
+      "name": "deep-research-pro-preview-12-2025",
+      "provider": "google",
+      "enabled": true
+    },
+    {
+      "name": "deepseek-reasoner",
+      "provider": "3rd party (openai-format)",
+      "enabled": true,
+      "isBuiltIn": false,
+      "baseUrl": "https://2c2ch1u11-share-api-0.hf.space/v1",
+      "apiKey": "sk-0ede6e59ff2f11f0ba940262342b8791",
+      "isEmbeddingModel": false,
+      "capabilities": [
+        "vision",
+        "reasoning",
+        "websearch"
+      ],
+      "stream": true,
+      "displayName": "deepseek-reasoner",
+      "openAIOrgId": ""
     }
   ],
   "activeEmbeddingModels": [
