@@ -276,13 +276,14 @@
       "apiKey": "sk-0ede6e59ff2f11f0ba940262342b8791",
       "isEmbeddingModel": false,
       "capabilities": [
-        "vision",
         "reasoning",
+        "vision",
         "websearch"
       ],
       "stream": true,
       "displayName": "deepseek-reasoner",
-      "openAIOrgId": ""
+      "openAIOrgId": "",
+      "maxTokens": 6800
     }
   ],
   "activeEmbeddingModels": [
