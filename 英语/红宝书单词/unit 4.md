@@ -29,6 +29,7 @@
 - [ ] capital
 - [ ] captive
 - [ ] capture
+- [ ] 
 - [ ] career
 - [ ] case
 - [ ] cast
@@ -39,6 +40,7 @@
 - [ ] cater
 - [ ] cause
 - [ ] cautious
+- [ ] 
 - [ ] c
 
 
