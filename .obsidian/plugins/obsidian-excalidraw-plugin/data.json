@@ -105,7 +105,7 @@
   "experimantalFourthFont": "Virgil",
   "addDummyTextElement": false,
   "zoteroCompatibility": false,
-  "fieldSuggester": true,
+  "fieldSuggester": false,
   "compatibilityMode": false,
   "drawingOpenCount": 0,
   "library": "deprecated",
