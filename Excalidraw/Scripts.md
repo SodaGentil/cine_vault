@@ -2,58 +2,43 @@
 excalidraw-plugin: parsed
 tags: [excalidraw/script]
 ---
-const input = await utils.inputPrompt(
-  "📝 插入 Word 风格表格",
-  "请输入【行数,列数】（例如 4,3 代表4行3列）：",
-  "4,3"
-);
+---
+excalidraw-plugin: parsed
+tags: [excalidraw/script]
+---
+```javascript
+const { Modal } = obsidian;
 
-if (!input) return;
-
-const parts = input.split(/[,，xX\s*]+/);
-const rows = parseInt(parts[0]);
-const cols = parseInt(parts[1]);
-
-if (isNaN(rows) || isNaN(cols) || rows <= 0 || cols <= 0) {
-    new Notice("输入有误！请输入纯数字和分隔符，如 4,3");
-    return;
-}
-
-// 设定类似 Word 的默认长宽比
-const cellWidth = 150;
-const cellHeight = 40;
-
-// 核心优化：Word 风格样式设置
-ea.style.roughness = 0;           // 笔直的线条
-ea.style.strokeWidth = 1;         // 细边框
-ea.style.strokeColor = "#000000"; // 纯黑边框
-ea.style.roundness = null;        // 直角
-ea.style.fontFamily = 2;          // 强制设置为标准字体 (1:手写, 2:标准, 3:等宽)
-
-let tableElements = [];
-
-for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-        let x = c * cellWidth;
-        let y = r * cellHeight;
-
-        if (r === 0) {
-            // 表头：浅灰色实体填充
-            ea.style.backgroundColor = "#f3f4f6"; 
-            ea.style.fillStyle = "solid";
-        } else {
-            // 内容：纯白色实体填充（防止背景穿模）
-            ea.style.backgroundColor = "#ffffff"; 
-            ea.style.fillStyle = "solid"; 
-        }
-
-        let rectId = ea.addRect(x, y, cellWidth, cellHeight);
-        tableElements.push(rectId);
+// 1. 定义一个自定义弹窗界面类
+class TableGridModal extends Modal {
+    constructor(app, callback) {
+        super(app);
+        this.callback = callback;
     }
-}
 
-// 自动打组，防止散架
-ea.addToGroup(tableElements);
+    onOpen() {
+        const { contentEl } = this;
+        contentEl.empty();
+        
+        // 设置弹窗标题和动态标签
+        contentEl.createEl("h3", { text: "插入 Word 风格表格", attr: { style: "margin-top: 0;" } });
+        const labelEl = contentEl.createEl("div", { 
+            text: "请在下方滑动选择", 
+            attr: { style: "margin-bottom: 10px; font-weight: bold; color: #d97706;" } 
+        });
 
-await ea.addElementsToView(true, true, true);
-new Notice(`✅ Word 风格 ${rows}×${cols} 表格插入成功！`);
+        // 创建网格容器 (默认 10x10)
+        const maxRows = 10;
+        const maxCols = 10;
+        const gridEl = contentEl.createEl("div", {
+            attr: { style: `display: grid; grid-template-columns: repeat(${maxCols}, 25px); gap: 2px; justify-content: center;` }
+        });
+
+        let cells = [];
+
+        // 绘制交互格子
+        for (let r = 1; r <= maxRows; r++) {
+            for (let c = 1; c <= maxCols; c++) {
+                const cell = gridEl.createEl("div", {
+                    attr: { 
+                        style: "width:
