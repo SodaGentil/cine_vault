@@ -2,41 +2,58 @@
 excalidraw-plugin: parsed
 tags: [excalidraw/script]
 ---
-```javascript
-// 获取用户输入的行数和列数
-let rowsStr = await utils.inputPrompt("请输入行数 (Rows):", "例如: 4", "4");
-if (!rowsStr) return;
-let colsStr = await utils.inputPrompt("请输入列数 (Columns):", "例如: 3", "3");
-if (!colsStr) return;
+const input = await utils.inputPrompt(
+  "📝 插入 Word 风格表格",
+  "请输入【行数,列数】（例如 4,3 代表4行3列）：",
+  "4,3"
+);
 
-const rows = parseInt(rowsStr);
-const cols = parseInt(colsStr);
+if (!input) return;
 
-if (isNaN(rows) || isNaN(cols)) {
-    new Notice("输入无效，请输入数字！");
+const parts = input.split(/[,，xX\s*]+/);
+const rows = parseInt(parts[0]);
+const cols = parseInt(parts[1]);
+
+if (isNaN(rows) || isNaN(cols) || rows <= 0 || cols <= 0) {
+    new Notice("输入有误！请输入纯数字和分隔符，如 4,3");
     return;
 }
 
-// 设置表格单元格的默认宽和高
-const cellWidth = 160;
-const cellHeight = 50;
+// 设定类似 Word 的默认长宽比
+const cellWidth = 150;
+const cellHeight = 40;
 
-// 设置 Excalidraw 的画笔样式
-ea.style.roughness = 0;           // 设置为 0，画出笔直的线条，更像标准表格
-ea.style.strokeWidth = 1;         // 线条粗细
-ea.style.fillStyle = "solid";     // 填充样式
-ea.style.backgroundColor = "transparent"; // 背景透明
+// 核心优化：Word 风格样式设置
+ea.style.roughness = 0;           // 笔直的线条
+ea.style.strokeWidth = 1;         // 细边框
+ea.style.strokeColor = "#000000"; // 纯黑边框
+ea.style.roundness = null;        // 直角
+ea.style.fontFamily = 2;          // 强制设置为标准字体 (1:手写, 2:标准, 3:等宽)
 
-// 循环生成矩形单元格
+let tableElements = [];
+
 for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
-        // 计算每个单元格的 X 和 Y 坐标
         let x = c * cellWidth;
         let y = r * cellHeight;
-        ea.addRect(x, y, cellWidth, cellHeight);
+
+        if (r === 0) {
+            // 表头：浅灰色实体填充
+            ea.style.backgroundColor = "#f3f4f6"; 
+            ea.style.fillStyle = "solid";
+        } else {
+            // 内容：纯白色实体填充（防止背景穿模）
+            ea.style.backgroundColor = "#ffffff"; 
+            ea.style.fillStyle = "solid"; 
+        }
+
+        let rectId = ea.addRect(x, y, cellWidth, cellHeight);
+        tableElements.push(rectId);
     }
 }
 
-// 将生成的元素添加到当前画布中，并自动居中选中
+// 自动打组，防止散架
+ea.addToGroup(tableElements);
+
 await ea.addElementsToView(true, true, true);
-```
+new Notice(`✅ Word 风格 ${rows}×${cols} 表格插入成功！`);
