@@ -2,16 +2,9 @@
 excalidraw-plugin: parsed
 tags: [excalidraw/script]
 ---
----
-excalidraw-plugin: parsed
-tags: [excalidraw/script]
----
-```javascript
-// 1. 清除可能残留的旧弹窗
 const oldOverlay = document.getElementById("my-custom-table-grid");
 if (oldOverlay) oldOverlay.remove();
 
-// 2. 创建全屏半透明遮罩层
 const overlay = document.createElement("div");
 overlay.id = "my-custom-table-grid";
 overlay.style.position = "fixed";
@@ -25,7 +18,6 @@ overlay.style.display = "flex";
 overlay.style.alignItems = "center";
 overlay.style.justifyContent = "center";
 
-// 3. 创建白色弹窗主体
 const modal = document.createElement("div");
 modal.style.backgroundColor = "var(--background-primary, #ffffff)";
 modal.style.padding = "20px";
@@ -55,7 +47,6 @@ gridEl.style.gap = "4px";
 
 let cells = [];
 
-// 4. 画表格的核心逻辑
 async function generateTable(rows, cols) {
     if (rows === 0 || cols === 0) return;
     const cellWidth = 150;
@@ -85,10 +76,8 @@ async function generateTable(rows, cols) {
     }
     ea.addToGroup(tableElements);
     await ea.addElementsToView(true, true, true);
-    new ea.obsidian.Notice("✅ 成功插入 " + cols + "x" + rows + " 表格！");
 }
 
-// 5. 循环生成 10x10 的交互格子
 for (let r = 1; r <= maxRows; r++) {
     for (let c = 1; c <= maxCols; c++) {
         const cell = document.createElement("div");
@@ -102,7 +91,6 @@ for (let r = 1; r <= maxRows; r++) {
         cell.dataset.row = r;
         cell.dataset.col = c;
 
-        // 鼠标悬停事件（橙色高亮）
         cell.addEventListener("mouseenter", () => {
             label.innerText = c + " 列 × " + r + " 行 表格";
             cells.forEach(item => {
@@ -118,7 +106,6 @@ for (let r = 1; r <= maxRows; r++) {
             });
         });
 
-        // 鼠标点击事件（生成表格并关闭弹窗）
         cell.addEventListener("click", () => {
             overlay.remove(); 
             generateTable(r, c); 
@@ -129,15 +116,12 @@ for (let r = 1; r <= maxRows; r++) {
     }
 }
 
-// 点击遮罩层空白处可取消关闭
 overlay.addEventListener("click", (e) => {
     if (e.target === overlay) overlay.remove();
 });
 
-// 6. 把拼装好的界面显示到屏幕上
 modal.appendChild(title);
 modal.appendChild(label);
 modal.appendChild(gridEl);
 overlay.appendChild(modal);
 document.body.appendChild(overlay);
-```
