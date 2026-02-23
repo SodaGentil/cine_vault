@@ -23,7 +23,7 @@
   "drawingEmbedPrefixWithFilename": true,
   "drawingFilnameEmbedPostfix": " ",
   "drawingFilenameDateTime": "YYYY-MM-DD HH.mm.ss",
-  "useExcalidrawExtension": false,
+  "useExcalidrawExtension": true,
   "cropSuffix": "",
   "cropPrefix": "cropped_",
   "annotateSuffix": "",
@@ -42,6 +42,7 @@
   "isLeftHanded": false,
   "desktopUIMode": "tray",
   "tabletUIMode": "compact",
+  "phoneUIMode": "mobile",
   "iframeMatchExcalidrawTheme": true,
   "matchTheme": false,
   "matchThemeAlways": false,
@@ -68,7 +69,7 @@
   "parseTODO": false,
   "todo": "☐",
   "done": "🗹",
-  "hoverPreviewWithoutCTRL": true,
+  "hoverPreviewWithoutCTRL": false,
   "linkOpacity": 1,
   "openInAdjacentPane": true,
   "showSecondOrderLinks": true,
@@ -105,59 +106,15 @@
   "experimantalFourthFont": "Virgil",
   "addDummyTextElement": false,
   "zoteroCompatibility": false,
-  "fieldSuggester": false,
+  "fieldSuggester": true,
   "compatibilityMode": false,
   "drawingOpenCount": 0,
   "library": "deprecated",
   "library2": {
     "type": "excalidrawlib",
     "version": 2,
-    "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.19.1",
-    "libraryItems": [
-      {
-        "status": "unpublished",
-        "elements": [
-          {
-            "id": "Yvg9qzTq",
-            "type": "rectangle",
-            "x": -1032.7757990120415,
-            "y": -1222.5893056594361,
-            "width": 254.11877913856847,
-            "height": 85.83569714940052,
-            "angle": 0,
-            "strokeColor": "#1e1e1e",
-            "backgroundColor": "transparent",
-            "fillStyle": "solid",
-            "strokeWidth": 2,
-            "strokeStyle": "solid",
-            "roughness": 1,
-            "opacity": 100,
-            "groupIds": [],
-            "frameId": null,
-            "index": "ae",
-            "roundness": {
-              "type": 3
-            },
-            "seed": 987080819,
-            "version": 3,
-            "versionNonce": 729034227,
-            "isDeleted": false,
-            "boundElements": [
-              {
-                "id": "50hVLwYd",
-                "type": "arrow"
-              }
-            ],
-            "updated": 1768886897433,
-            "link": null,
-            "locked": false,
-            "hasTextLink": false
-          }
-        ],
-        "id": "vqZNXrYG1XU3J3z3trBxP",
-        "created": 1768887272182
-      }
-    ]
+    "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.20.5",
+    "libraryItems": []
   },
   "imageElementNotice": true,
   "mdSVGwidth": 500,
@@ -167,7 +124,7 @@
   "mdBorderColor": "Black",
   "mdCSS": "",
   "scriptEngineSettings": {},
-  "previousRelease": "2.19.1",
+  "previousRelease": "2.20.5",
   "showReleaseNotes": true,
   "compareManifestToPluginVersion": true,
   "showNewVersionNotification": true,
@@ -175,7 +132,9 @@
   "latexPreambleLocation": "preamble.sty",
   "taskboneEnabled": false,
   "taskboneAPIkey": "",
-  "pinnedScripts": [],
+  "pinnedScripts": [
+    "Excalidraw/Scripts/Word表格工具.md"
+  ],
   "sidepanelTabs": [],
   "customPens": [
     {
@@ -190,7 +149,7 @@
         "highlighter": false,
         "constantPressure": false,
         "hasOutline": false,
-        "outlineWidth": 0,
+        "outlineWidth": 1,
         "options": {
           "thinning": 0.6,
           "smoothing": 0.5,
@@ -489,7 +448,7 @@
       }
     }
   ],
-  "numberOfCustomPens": 3,
+  "numberOfCustomPens": 0,
   "pdfScale": 4,
   "pdfBorderBox": true,
   "pdfFrame": false,
@@ -527,13 +486,13 @@
   },
   "markdownNodeOneClickEditing": false,
   "canvasImmersiveEmbed": true,
-  "startupScriptPath": "Excalidraw/ExcalidrawStartup",
+  "startupScriptPath": "",
   "aiEnabled": true,
   "openAIAPIToken": "",
-  "openAIDefaultTextModel": "gpt-3.5-turbo-1106",
+  "openAIDefaultTextModel": "gpt-5-mini",
   "openAIDefaultTextModelMaxTokens": 4096,
-  "openAIDefaultVisionModel": "gpt-4o",
-  "openAIDefaultImageGenerationModel": "dall-e-3",
+  "openAIDefaultVisionModel": "gpt-5-mini",
+  "openAIDefaultImageGenerationModel": "gpt-image-1",
   "openAIURL": "https://api.openai.com/v1/chat/completions",
   "openAIImageGenerationURL": "https://api.openai.com/v1/images/generations",
   "openAIImageEditsURL": "https://api.openai.com/v1/images/edits",

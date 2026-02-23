@@ -2,10 +2,6 @@
 excalidraw-plugin: parsed
 tags: [excalidraw/script]
 ---
----
-excalidraw-plugin: parsed
-tags: [excalidraw/script]
----
 ```javascript
 const { Modal, Notice } = ea.obsidian;
 
@@ -88,4 +84,33 @@ new TableGridModal(app, async (rows, cols) => {
     const cellWidth = 150;
     const cellHeight = 40;
 
-    ea.style.roughness = 0;
+    ea.style.roughness = 0;           
+    ea.style.strokeWidth = 1;         
+    ea.style.strokeColor = "#000000"; 
+    ea.style.roundness = null;        
+    ea.style.fontFamily = 2;          
+
+    let tableElements = [];
+
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            let x = c * cellWidth;
+            let y = r * cellHeight;
+
+            if (r === 0) {
+                ea.style.backgroundColor = "#f3f4f6"; 
+                ea.style.fillStyle = "solid";
+            } else {
+                ea.style.backgroundColor = "#ffffff"; 
+                ea.style.fillStyle = "solid"; 
+            }
+
+            let rectId = ea.addRect(x, y, cellWidth, cellHeight);
+            tableElements.push(rectId);
+        }
+    }
+
+    ea.addToGroup(tableElements);
+    await ea.addElementsToView(true, true, true);
+    new Notice("✅ 成功插入 " + cols + "x" + rows + " 表格！");
+}).open();
