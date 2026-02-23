@@ -1,5 +1,6 @@
 {
   "pinned": [
-    "obsidian-excalidraw-plugin:open-link-props"
+    "obsidian-excalidraw-plugin:open-link-props",
+    "obsidian-excalidraw-plugin:insert-LaTeX-symbol"
   ]
 }
