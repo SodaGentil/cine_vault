@@ -114,3 +114,4 @@ new TableGridModal(app, async (rows, cols) => {
     await ea.addElementsToView(true, true, true);
     new Notice("✅ 成功插入 " + cols + "x" + rows + " 表格！");
 }).open();
+```

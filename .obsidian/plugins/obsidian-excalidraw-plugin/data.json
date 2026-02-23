@@ -132,9 +132,7 @@
   "latexPreambleLocation": "preamble.sty",
   "taskboneEnabled": false,
   "taskboneAPIkey": "",
-  "pinnedScripts": [
-    "Excalidraw/Scripts/Word表格工具.md"
-  ],
+  "pinnedScripts": [],
   "sidepanelTabs": [],
   "customPens": [
     {
