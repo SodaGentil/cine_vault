@@ -2,7 +2,8 @@
 excalidraw-plugin: parsed
 tags: [excalidraw/script]
 ---
-// --- 核心排版算法（自动对齐并撑开行高） ---
+
+// 1. 核心整理算法
 async function autoLayoutTable(tableElements) {
     if (!tableElements || tableElements.length === 0) return;
     ea.copyViewElementsToEAforEditing(tableElements);
@@ -40,25 +41,38 @@ async function autoLayoutTable(tableElements) {
     await ea.addElementsToView(false, false);
 }
 
-// --- 核心生成算法（纯净版） ---
+// 2. 生成网格算法
 async function startProcess(rows, cols) {
     const cellWidth = 150;
     const cellHeight = 45;
-    ea.style.roughness = 0;           
-    ea.style.strokeWidth = 1;         
-    ea.style.strokeColor = "#000000"; 
-    ea.style.roundness = null;        
+    ea.style.roughness = 0;
+    ea.style.strokeWidth = 1;
+    ea.style.strokeColor = "#000000";
+    ea.style.roundness = null;
     ea.style.fontFamily = 2;
-    ea.style.textAlign = "center";
-    ea.style.verticalAlign = "middle";
 
     let tableIds = [];
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
             let x = c * cellWidth;
             let y = r * cellHeight;
-
             ea.style.backgroundColor = (r === 0) ? "#f3f4f6" : "#ffffff";
             ea.style.fillStyle = "solid";
             
-            // 直接画一个干净的矩形，双击它
+            // 纯净生成矩形，彻底告别条形码
+            let rectId = ea.addRect(x, y, cellWidth, cellHeight);
+            tableIds.push(rectId);
+        }
+    }
+    ea.addToGroup(tableIds);
+    await ea.addElementsToView(true, true, true);
+    
+    // 生成后自动稍微整理一下
+    setTimeout(() => {
+        const elements = ea.getViewElements().filter(el => tableIds.includes(el.id));
+        autoLayoutTable(elements);
+    }, 500);
+}
+
+// 3. 交互与入口 (自动判断是生成新表还是整理旧表)
+const selectedElements = ea.getViewSelectedElements();
