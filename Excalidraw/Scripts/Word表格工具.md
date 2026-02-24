@@ -2,67 +2,60 @@
 excalidraw-plugin: parsed
 tags: [excalidraw/script]
 ---
-// === Excalidraw Word表格生成与双向整理工具 ===
+// === Excalidraw Word表格生成与【网格轨道】排版引擎 ===
 
-// 1. 核心整理算法（升级为：支持高度与宽度的双向自动对齐）
+// 1. 核心排版引擎：基于矩阵轨道的二维自适应
 async function autoLayoutTable(tableElements) {
     if (!tableElements || tableElements.length === 0) return;
     ea.copyViewElementsToEAforEditing(tableElements);
-    const elements = ea.getElements();
-    const rects = elements.filter(e => e.type === "rectangle");
+    const rects = ea.getElements().filter(e => e.type === "rectangle");
     if (rects.length === 0) return;
 
-    // 按 Y 轴坐标将格子分行 (容差 10px)
-    const TOLERANCE = 10;
-    rects.sort((a, b) => {
-        if (Math.abs(a.y - b.y) > TOLERANCE) return a.y - b.y;
-        return a.x - b.x;
-    });
+    // 容差值：允许手动拖拽时产生 20px 以内的对齐误差
+    const TOLERANCE = 20; 
 
-    let rows = [];
-    let currentRow = [rects[0]];
-    for (let i = 1; i < rects.length; i++) {
-        if (Math.abs(rects[i].y - currentRow[0].y) <= TOLERANCE) {
-            currentRow.push(rects[i]);
-        } else {
-            rows.push(currentRow);
-            currentRow = [rects[i]];
-        }
-    }
-    rows.push(currentRow);
+    // 步骤 A：提取唯一的 X 和 Y 坐标，形成“网格轨道参考线”
+    let xs = [...new Set(rects.map(r => r.x))].sort((a, b) => a - b);
+    let ys = [...new Set(rects.map(r => r.y))].sort((a, b) => a - b);
 
-    // 强制每一行内部严格按 X 轴从左到右排序
-    rows.forEach(row => row.sort((a, b) => a.x - b.x));
+    let colTracks = [], rowTracks = [];
+    xs.forEach(x => { if (colTracks.length === 0 || x - colTracks[colTracks.length - 1] > TOLERANCE) colTracks.push(x); });
+    ys.forEach(y => { if (rowTracks.length === 0 || y - rowTracks[rowTracks.length - 1] > TOLERANCE) rowTracks.push(y); });
 
-    // 计算每一列的“最大宽度”
-    let colCount = Math.max(...rows.map(r => r.length));
-    let colWidths = new Array(colCount).fill(0);
-    for (let r = 0; r < rows.length; r++) {
-        for (let c = 0; c < rows[r].length; c++) {
-            if (rows[r][c].width > colWidths[c]) {
-                colWidths[c] = rows[r][c].width;
-            }
+    // 步骤 B：初始化网格矩阵，并记录每列最大宽度、每行最大高度
+    let colWidths = new Array(colTracks.length).fill(0);
+    let rowHeights = new Array(rowTracks.length).fill(0);
+    let grid = Array(rowTracks.length).fill(null).map(() => Array(colTracks.length).fill(null));
+
+    // 步骤 C：将所有格子对号入座，放入矩阵
+    for (let rect of rects) {
+        let c = colTracks.findIndex(cx => Math.abs(rect.x - cx) <= TOLERANCE);
+        let r = rowTracks.findIndex(ry => Math.abs(rect.y - ry) <= TOLERANCE);
+        if (c !== -1 && r !== -1) {
+            grid[r][c] = rect;
+            colWidths[c] = Math.max(colWidths[c], rect.width);
+            rowHeights[r] = Math.max(rowHeights[r], rect.height);
         }
     }
 
-    // 计算每一行的“最大高度”
-    let rowHeights = rows.map(row => Math.max(...row.map(cell => cell.height)));
+    // 步骤 D：基于矩阵轨道，重新计算绝对坐标并渲染
+    let startY = Math.min(...rects.map(r => r.y));
+    let startX = Math.min(...rects.map(r => r.x));
 
-    // 重新应用所有格子的 X, Y, Width, Height
-    let currentY = rows[0][0].y; // 整个表格的起始 Y
-    let startX = Math.min(...rows.map(r => r[0].x)); // 整个表格的起始 X
-
-    for (let r = 0; r < rows.length; r++) {
+    let currentY = startY;
+    for (let r = 0; r < rowTracks.length; r++) {
         let currentX = startX;
-        for (let c = 0; c < rows[r].length; c++) {
-            let cell = rows[r][c];
-            cell.x = currentX;           // 重置 X 坐标
-            cell.y = currentY;           // 重置 Y 坐标
-            cell.width = colWidths[c];   // 统一同列宽度
-            cell.height = rowHeights[r]; // 统一同行高度
-            currentX += colWidths[c];    // 下一个格子的起始 X 向右推移
+        for (let c = 0; c < colTracks.length; c++) {
+            let cell = grid[r][c];
+            if (cell) {
+                cell.x = currentX;
+                cell.y = currentY;
+                cell.width = colWidths[c];
+                cell.height = rowHeights[r];
+            }
+            currentX += colWidths[c]; // X 轴向右推进
         }
-        currentY += rowHeights[r];       // 下一行的起始 Y 向下推移
+        currentY += rowHeights[r]; // Y 轴向下推进
     }
 
     await ea.addElementsToView(false, false);
@@ -93,6 +86,7 @@ async function startProcess(rows, cols) {
     ea.addToGroup(tableIds);
     await ea.addElementsToView(true, true, true);
     
+    // 生成后自动整理坐标
     setTimeout(() => {
         const elements = ea.getViewElements().filter(el => tableIds.includes(el.id));
         autoLayoutTable(elements);
@@ -104,7 +98,7 @@ const selectedElements = ea.getViewSelectedElements();
 
 if (selectedElements.length > 0) {
     autoLayoutTable(selectedElements).then(() => {
-        new ea.obsidian.Notice("✨ 表格的长宽已全面自适应对齐！");
+        new ea.obsidian.Notice("✨ 网格轨道已重组！表格长宽自适应对齐。");
     });
 } else {
     const oldOverlay = document.getElementById("integrated-table-grid");
