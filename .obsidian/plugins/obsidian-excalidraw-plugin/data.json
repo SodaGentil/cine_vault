@@ -165,9 +165,7 @@
     "Excalidraw/Scripts/Word表格工具.md",
     "Excalidraw/Scripts/Downloaded/Mindmap Builder.md"
   ],
-  "sidepanelTabs": [
-    "{\"script\":\"Downloaded/Mindmap Builder\",\"title\":\"MindMap Builder\"}"
-  ],
+  "sidepanelTabs": [],
   "customPens": [
     {
       "type": "default",
