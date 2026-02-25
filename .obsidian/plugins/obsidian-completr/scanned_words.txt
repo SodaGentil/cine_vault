@@ -170,6 +170,7 @@ TFile
 hook
 Auto
 AutoexportConfig
+Aliases
 In
 If
 However
