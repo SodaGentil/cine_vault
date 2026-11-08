@@ -1,0 +1,944 @@
+.ostracon-view {
+  box-sizing: border-box;
+  padding: 8px 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  max-height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  color: var(--text-normal);
+}
+
+.workspace-leaf-content .view-content.ostracon-view {
+  padding-bottom: 0;
+}
+
+/* ── Tabs ── */
+
+.ostracon-tabs {
+  display: flex;
+  gap: 2px;
+  background: var(--background-modifier-hover);
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.ostracon-tab {
+  flex: 1;
+  height: 24px;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 120ms;
+}
+.ostracon-tab:hover { color: var(--text-normal); }
+.ostracon-tab.is-active {
+  background: var(--background-primary);
+  color: var(--text-normal);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+/* ── Background Loading ── */
+
+.ostracon-bg-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 0;
+  flex-shrink: 0;
+}
+
+/* ── Card area ── */
+
+.ostracon-card-area {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* ── Virtual List ── */
+
+.ostracon-virtual-spacer {
+  position: relative;
+  width: 100%;
+}
+
+.ostracon-virtual-row {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ── Pinned Section Head ── */
+
+.ostracon-pinned-head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 6px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  cursor: pointer;
+  user-select: none;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-normal);
+  background: var(--background-secondary);
+  flex-shrink: 0;
+}
+.ostracon-pinned-head:hover {
+  background: var(--background-modifier-hover);
+}
+
+.ostracon-section-head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 6px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  cursor: pointer;
+  user-select: none;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--background-secondary);
+}
+.ostracon-section-head:hover {
+  background: var(--background-modifier-hover);
+}
+.ostracon-section-head.is-active {
+  color: var(--text-normal);
+  background: var(--background-modifier-hover);
+}
+
+.ostracon-section-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ostracon-section-hint {
+  font-size: 10px;
+  color: var(--text-faint);
+  flex-shrink: 0;
+}
+.ostracon-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.ostracon-card-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ostracon-card-group.is-collapsed .ostracon-card-list {
+  display: none;
+}
+
+/* ── Group Head ── */
+
+.ostracon-group-head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 4px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  margin-bottom: 2px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ostracon-group-head input[type="checkbox"] {
+  margin: 0;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.ostracon-collapse-arrow {
+  font-size: 8px;
+  flex-shrink: 0;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.ostracon-group-label {
+  flex: 1;
+  min-width: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ostracon-group-content-btn {
+  padding: 1px 3px;
+  background: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  opacity: .4;
+  flex-shrink: 0;
+  line-height: 1;
+  user-select: none;
+  transition: opacity 120ms;
+}
+.ostracon-group-content-btn:hover,
+.ostracon-group-content-btn.is-active {
+  opacity: 1;
+  color: var(--text-normal);
+}
+
+/* ── Card Item ── */
+
+.ostracon-card-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 6px;
+  border-radius: 4px;
+  transition: background 80ms;
+  user-select: none;
+}
+.ostracon-card-item:hover {
+  background: var(--background-modifier-hover);
+}
+.ostracon-card-item.is-checked {
+  background: var(--background-modifier-hover);
+}
+
+.ostracon-card-item input[type="checkbox"] {
+  margin: 0;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.ostracon-card-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 99px;
+  flex-shrink: 0;
+  background: var(--ostracon-card-color, var(--background-modifier-border));
+}
+
+/* ── Card text area (drag-to-import zone) ── */
+
+.ostracon-card-text {
+  flex: 1;
+  min-width: 0;
+  cursor: grab;
+}
+.ostracon-card-text:active {
+  cursor: grabbing;
+}
+.ostracon-card-text.is-dragging {
+  opacity: .55;
+}
+
+.ostracon-card-title {
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+  color: var(--text-normal);
+}
+
+.ostracon-card-excerpt {
+  width: 100%;
+  padding: 2px 0 0 22px;
+  overflow: hidden;
+  color: var(--text-muted);
+  font-size: 10px;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Action bar ── */
+
+.ostracon-action-bar {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.ostracon-count {
+  font-size: 11px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.ostracon-search-inline {
+  flex: 1;
+  min-width: 0;
+  height: 24px;
+  padding: 0 6px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  font-size: 11px;
+  background: var(--background-primary);
+  color: var(--text-normal);
+}
+.ostracon-search-inline::placeholder { color: var(--text-muted); }
+
+.ostracon-refresh-btn {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  color: var(--text-muted);
+}
+.ostracon-refresh-btn:hover,
+.ostracon-refresh-btn:focus-visible {
+  color: var(--text-normal);
+}
+.ostracon-refresh-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.ostracon-refresh-btn.is-loading svg {
+  animation: ostracon-refresh-spin .8s linear infinite;
+}
+@keyframes ostracon-refresh-spin {
+  to { transform: rotate(360deg); }
+}
+
+.ostracon-import-btn {
+  flex-shrink: 0;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--interactive-accent);
+  border-radius: 5px;
+  color: var(--text-on-accent);
+  background: var(--interactive-accent);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.ostracon-import-btn:hover {
+  background: var(--interactive-accent-hover);
+}
+.ostracon-import-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── Helpers ── */
+
+.ostracon-loading {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.ostracon-loading-bar {
+  width: 160px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--background-modifier-border);
+  overflow: hidden;
+  position: relative;
+}
+
+.ostracon-loading-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--interactive-accent);
+  animation: ostracon-loading-slide 1.2s ease-in-out infinite;
+}
+
+@keyframes ostracon-loading-slide {
+  0%   { left: -100%; }
+  50%  { left: 100%; }
+  100% { left: 100%; }
+}
+
+.ostracon-loading-text {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.ostracon-error {
+  font-size: 11px;
+  color: var(--color-red);
+  text-align: center;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.ostracon-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 30px 10px;
+}
+
+/* ── Disconnected ── */
+
+.ostracon-disconnected {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.ostracon-disconnected strong {
+  font-size: 15px;
+  color: var(--text-normal);
+}
+
+.ostracon-disconnected span {
+  font-size: 12px;
+  color: var(--text-muted);
+  max-width: 240px;
+}
+
+.ostracon-empty-btn {
+  border: 1px solid var(--interactive-accent);
+  border-radius: 5px;
+  padding: 6px 16px;
+  font-size: 12px;
+  color: var(--text-on-accent);
+  background: var(--interactive-accent);
+  cursor: pointer;
+}
+.ostracon-empty-btn:hover {
+  background: var(--interactive-accent-hover);
+}
+.ostracon-retry-btn { display: inline-block; margin-top: 8px; }
+
+/* ── Detail Modal ── */
+
+.ostracon-detail-modal h2 {
+  font-size: 16px;
+  margin: 0 0 10px;
+  color: var(--text-normal);
+}
+
+.ostracon-detail-modal h3 {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 10px 0 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.ostracon-detail-meta {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.ostracon-detail-tag,
+.ostracon-detail-color {
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: var(--background-modifier-hover);
+}
+
+.ostracon-detail-block {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-normal);
+  padding: 8px 10px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  background: var(--background-primary);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.ostracon-detail-modal a {
+  font-size: 12px;
+  color: var(--interactive-accent);
+  text-decoration: none;
+}
+.ostracon-detail-modal a:hover {
+  text-decoration: underline;
+}
+
+.ostracon-detail-loading {
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 8px 0;
+  text-align: center;
+}
+
+.ostracon-detail-markdown {
+  max-height: 55vh;
+  overflow-y: auto;
+  background: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  padding: 10px 12px;
+}
+
+.ostracon-detail-actions {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ── Context Menu ── */
+
+.ostracon-context-menu .modal-bg { display: none; }
+
+.ostracon-context-menu {
+  position: fixed;
+  min-width: 160px;
+  padding: 4px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  background: var(--background-primary);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+.ostracon-context-item {
+  display: block;
+  width: 100%;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  color: var(--text-normal);
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+.ostracon-context-item:hover {
+  background: var(--background-modifier-hover);
+}
+.ostracon-settings {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+}
+/* 去掉 Obsidian 1.13 设置弹窗对子页面内容的 700px 居中约束，让本插件设置页填满可用宽度 */
+.modal.mod-settings .setting-page.vertical-tab-content:has(> .setting-page-content.ostracon-settings-page) > .setting-page-titlebar,
+.modal.mod-settings .setting-page.vertical-tab-content:has(> .setting-page-content.ostracon-settings-page) > .setting-page-content {
+  padding-inline: var(--size-4-8);
+}
+.ostracon-settings-footer button:focus-visible,
+.ostracon-settings-advanced > summary:focus-visible {
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: 2px;
+}
+.ostracon-settings-panel { position: relative; }
+.ostracon-settings-panel[hidden] { display: none; }
+.ostracon-settings-panel-header {
+  position: absolute;
+  top: -18px;
+  right: 0;
+  pointer-events: none;
+}
+.ostracon-settings-save-status {
+  min-width: 42px;
+  color: var(--text-success);
+  font-size: var(--font-ui-smaller);
+  text-align: right;
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+.ostracon-settings-save-status.is-visible { opacity: 1; }
+.ostracon-settings-group { margin: 0 0 28px; }
+.ostracon-settings-group > .setting-item-heading {
+  margin: 0;
+  padding: 0 0 8px;
+  border: 0;
+  border-bottom: 1px solid var(--background-modifier-border);
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+  font-weight: 600;
+}
+.ostracon-settings-rows > .setting-item,
+.ostracon-card-title-policy > .setting-item {
+  display: grid;
+  grid-template-columns: fit-content(45%) minmax(0, 1fr);
+  align-items: center;
+  gap: 10px 24px;
+  min-width: 0;
+  min-height: 0;
+  height: auto;
+  padding: 12px 0;
+  border-top: 0;
+  border-bottom: 1px solid var(--background-modifier-border-hover);
+  border-radius: 0;
+  background: transparent;
+}
+.ostracon-settings-rows > .setting-item > .setting-item-info,
+.ostracon-settings-rows > .setting-item > .setting-item-control,
+.ostracon-card-title-policy > .setting-item > .setting-item-info,
+.ostracon-card-title-policy > .setting-item > .setting-item-control {
+  min-width: 0;
+  max-width: 100%;
+}
+.ostracon-settings-rows > .setting-item > .setting-item-info,
+.ostracon-card-title-policy > .setting-item > .setting-item-info {
+  min-width: 0;
+  grid-column: 1;
+}
+.ostracon-settings-rows > .setting-item > .setting-item-control,
+.ostracon-card-title-policy > .setting-item > .setting-item-control {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  gap: 8px;
+  grid-column: 2;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+.ostracon-settings-rows > .ostracon-setting-margin > .setting-item-control {
+  container-type: inline-size;
+  align-items: flex-start;
+  gap: 10px;
+}
+.ostracon-settings-rows > .setting-item > .setting-item-control > select,
+.ostracon-card-title-policy > .setting-item > .setting-item-control > select {
+  width: max-content;
+  max-width: 100%;
+}
+.ostracon-settings-rows > .ostracon-setting-margin > .setting-item-control > select {
+  flex: 0 0 auto;
+}
+.ostracon-margin-values {
+  display: block;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+.ostracon-margin-fields {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  width: max-content;
+  max-width: 100%;
+  min-width: 0;
+}
+.ostracon-margin-fields label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  white-space: nowrap;
+  flex: 0 1 auto;
+}
+.ostracon-margin-fields label input {
+  width: 100%;
+  min-width: 44px;
+  max-width: 72px;
+}
+.ostracon-margin-unit {
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+@container (max-width: 500px) {
+  .ostracon-margin-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(61px, 1fr)) max-content;
+    grid-template-rows: repeat(2, auto);
+    align-items: center;
+  }
+  .ostracon-margin-fields label:nth-child(1) { grid-area: 1 / 1; }
+  .ostracon-margin-fields label:nth-child(2) { grid-area: 1 / 2; }
+  .ostracon-margin-fields label:nth-child(3) { grid-area: 2 / 1; }
+  .ostracon-margin-fields label:nth-child(4) { grid-area: 2 / 2; }
+  .ostracon-margin-unit {
+    grid-area: 1 / 3 / 3 / 4;
+    align-self: center;
+  }
+}
+.ostracon-settings-rows > .setting-item > .setting-item-control > input[type="text"],
+.ostracon-settings-rows > .setting-item > .setting-item-control > input[type="number"] {
+  width: min(100%, 280px);
+}
+.ostracon-paper-dimensions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+}
+.ostracon-paper-dimensions input {
+  width: 76px;
+  text-align: right;
+}
+.ostracon-settings .ostracon-connection-address .setting-item-description {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.ostracon-settings-field-error {
+  min-height: 0;
+  margin: -4px 0 0;
+  color: var(--text-error);
+  font-size: var(--font-ui-smaller);
+  text-align: left;
+}
+.ostracon-settings-field-error:empty { display: none; }
+.ostracon-settings .setting-item.has-error input { border-color: var(--text-error); }
+.ostracon-settings-config-error {
+  margin: -8px 0 20px;
+  padding: 8px 10px;
+  border-left: 3px solid var(--text-error);
+  background: var(--background-secondary);
+  color: var(--text-error);
+  font-size: var(--font-ui-small);
+}
+.ostracon-settings-advanced { margin: 4px 0 24px; border-bottom: 1px solid var(--background-modifier-border); }
+.ostracon-settings-advanced > summary {
+  padding: 10px 0;
+  color: var(--text-normal);
+  font-weight: 600;
+  cursor: pointer;
+}
+.ostracon-settings-advanced .ostracon-settings-rows { padding-bottom: 8px; }
+.ostracon-settings-footer { display: flex; justify-content: flex-end; padding: 8px 0 4px; }
+.ostracon-settings-footer button { color: var(--text-muted); }
+.ostracon-settings-empty { color: var(--text-muted); font-size: var(--font-ui-smaller); }
+.ostracon-template-tabs {
+  display: inline-flex;
+  gap: 2px;
+  margin: 8px 0 14px;
+  padding: 3px;
+  border-radius: 6px;
+  background: var(--background-secondary);
+}
+.ostracon-template-tabs button {
+  min-width: 92px;
+  padding: 5px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+}
+.ostracon-template-tabs button.is-active {
+  background: var(--background-primary);
+  color: var(--text-normal);
+}
+.ostracon-template-tabs button:focus-visible,
+.ostracon-template-tools button:focus-visible,
+.ostracon-template-actions button:focus-visible {
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: 2px;
+}
+.ostracon-template-workspace { min-width: 0; }
+.ostracon-template-panel[hidden] { display: none; }
+.ostracon-template-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+.ostracon-template-actions,
+.ostracon-template-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ostracon-template-actions { flex-wrap: wrap; justify-content: flex-end; }
+.ostracon-template-toggle { color: var(--text-muted); font-size: var(--font-ui-small); }
+.ostracon-template-editor {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 180px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  resize: vertical;
+  font-family: var(--font-monospace);
+  font-size: var(--font-ui-small);
+  line-height: 1.55;
+}
+
+.ostracon-template-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.ostracon-template-tools button {
+  padding: 3px 8px;
+  font-size: var(--font-ui-smaller);
+}
+
+.ostracon-template-status {
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+}
+
+.ostracon-template-status.is-error {
+  color: var(--text-error);
+}
+
+.ostracon-template-preview-wrap { margin-top: 14px; }
+.ostracon-template-preview-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  font-weight: 600;
+}
+.ostracon-template-preview {
+  max-width: 100%;
+  max-height: 220px;
+  margin: 0;
+  padding: 10px;
+  overflow: auto;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  background: var(--background-secondary);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ostracon-settings-save-status { transition: none; }
+}
+.ostracon-html-render-source {
+  position: fixed;
+  left: -100000px;
+  top: 0;
+  width: 960px;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ── Rendered preview images ──────────────────────────────────────── */
+.ostracon-rendered-image {
+  max-width: 100% !important;
+}
+
+/* ── 卡片详情：结构化内容块（摘录/评论逐块渲染 + 铅笔编辑按钮） ────── */
+.ostracon-detail-block-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 6px 0;
+}
+.ostracon-detail-block-body {
+  flex: 1;
+  min-width: 0;
+}
+.ostracon-detail-plain {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: var(--font-ui-small);
+}
+.ostracon-detail-comment-edit {
+  display: inline-block;
+  flex-shrink: 0;
+  margin-top: 4px;
+  padding: 0;
+  color: var(--text-faint);
+  cursor: pointer;
+  vertical-align: middle;
+  line-height: 1;
+}
+.ostracon-detail-comment-edit:hover {
+  color: var(--interactive-accent);
+}
+
+/* ── 子卡片标题输入弹窗 ───────────────────────────────────────────── */
+.ostracon-title-modal {
+  min-width: 280px;
+}
+.ostracon-title-modal h3 {
+  margin: 0 0 6px;
+}
+.ostracon-title-hint {
+  margin-bottom: 8px;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+.ostracon-title-input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Canvas 浮动菜单 · 在 MarginNote 中打开（M 图标 + 右下角链接角标） */
+.ostracon-icon-mn-open {
+  position: relative;
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+}
+.ostracon-mn-link-badge {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--background-primary);
+  color: var(--text-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 1px var(--background-modifier-border);
+}
+.ostracon-mn-arrow-badge {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--background-primary);
+  color: var(--text-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 1px var(--background-modifier-border);
+}
